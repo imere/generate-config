@@ -1,20 +1,25 @@
 const Config = require('webpack-chain');
 
-const { checkValidArgs } = require('./bin/checkValid');
+const { checkValidArgs } = require('./bin/checkValidArgs');
 const { writeFile } = require('./bin/writeFile');
-const { CMD, CLI } = require('./lib/util/constant');
+const { CMDS, CMD, CLI } = require('./lib/util/constant');
 
-exports.CLI = CLI;
 exports.CMD = CMD;
+exports.CLI = CLI;
+exports.CMDS = CMDS;
 
 /**
- * @param {Array<any>} cmds
+ * @param {exports.CMDS} cmds
  * @param {'none' | 'production' | 'development'} env
  */
 exports.generateConfig = function generateConfig(cmds, env = 'development') {
+
+  /**
+   * @type {any}
+   */
   const args = {};
 
-  for (const cmd of cmds) {
+  for (const cmd of Object.keys(cmds)) {
     args[cmd] = cmd;
   }
 
@@ -24,14 +29,10 @@ exports.generateConfig = function generateConfig(cmds, env = 'development') {
 
   const config = new Config();
 
-  require('./lib/index')(
-    config,
-    env,
-    args
-  );
+  require('./lib/index')();
 
   if (args[CLI['enable-preview']]) {
-    writeFile(config, env, args);
+    writeFile();
   }
 
   return config.toConfig();
