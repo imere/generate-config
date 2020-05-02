@@ -1,5 +1,5 @@
-const {CLI, CMD} = require('../lib/util/constant');
-const {kebabToCamelCase} = require('../lib/util/helper');
+const { CLI, CMD } = require('../lib/util/constant');
+const { kebabToCamelCase } = require('../lib/util/helper');
 
 /**
  * @param {import('yargs-parser').Arguments} args

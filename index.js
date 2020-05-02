@@ -1,8 +1,8 @@
 const Config = require('webpack-chain');
 
-const {checkValidArgs} = require('./bin/checkValid');
-const {writeFile} = require('./bin/writeFile');
-const {CMD, CLI} = require('./lib/util/constant');
+const { checkValidArgs } = require('./bin/checkValid');
+const { writeFile } = require('./bin/writeFile');
+const { CMD, CLI } = require('./lib/util/constant');
 
 exports.CLI = CLI;
 exports.CMD = CMD;
