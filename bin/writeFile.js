@@ -8,6 +8,7 @@ const { Logger } = require('../lib/util/logger');
 function writeFile() {
   const configString = eol.auto([
     depend.flushRequireString(),
+    '',
     `module.exports = ${Config.toString(config.chain.toConfig())}`
   ].join('\n'));
 
@@ -32,4 +33,4 @@ function writeFile() {
 
 module.exports = {
   writeFile
-}
+};

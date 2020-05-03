@@ -22,8 +22,8 @@ ifArg(CLI.help, () => {
       map((str) => `--${str}`).
       join(' ')
   );
-}, () => {
-  require('../lib/index')();
+}, async () => {
+  await require('../lib/index')();
 
   ifArg(CLI['enable-preview'], () => {
     writeFile();
