@@ -1,4 +1,4 @@
-const Config = require('webpack-chain');
+const Chain = require('webpack-chain');
 
 const { checkValidArgs } = require('./bin/checkValidArgs');
 const { writeFile } = require('./bin/writeFile');
@@ -9,7 +9,7 @@ exports.CLI = CLI;
 exports.CMDS = CMDS;
 
 /**
- * @param {exports.CMDS} cmds
+ * @param {Partial<exports.CMDS>} cmds
  * @param {'none' | 'production' | 'development'} env
  */
 exports.generateConfig = function generateConfig(cmds, env = 'development') {
@@ -27,7 +27,7 @@ exports.generateConfig = function generateConfig(cmds, env = 'development') {
 
   checkValidArgs(args);
 
-  const config = new Config();
+  const chain = new Chain();
 
   require('./lib/index')();
 
@@ -35,5 +35,5 @@ exports.generateConfig = function generateConfig(cmds, env = 'development') {
     writeFile();
   }
 
-  return config.toConfig();
+  return chain.toConfig();
 };

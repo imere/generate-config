@@ -1,25 +1,25 @@
 const Config = require('webpack-chain');
 const eol = require('eol');
 
-const config = require('../lib/util/config');
-const { flushImportModuleString } = require('../lib/util/helper');
+const { config } = require('../lib/util/config');
+const { depend } = require('../lib/util/depend');
 const { Logger } = require('../lib/util/logger');
 
-exports.writeFile = function writeFile() {
+function writeFile() {
   const configString = eol.auto([
-    flushImportModuleString(),
+    depend.flushRequireString(),
     `module.exports = ${Config.toString(config.chain.toConfig())}`
   ].join('\n'));
 
-  const writePath = require('path').
+  const filePath = require('path').
     join(process.cwd(), 'webpack.config.preview.only.js');
 
-  Logger.info(`Create at ${writePath}`);
+  Logger.info(`Create at ${filePath}`);
   Logger.warn('This file is only for preview');
 
   require('fs').
     writeFile(
-      writePath,
+      filePath,
       configString,
       { encoding: 'utf-8' },
       (err) => {
@@ -28,4 +28,8 @@ exports.writeFile = function writeFile() {
         }
       }
     );
-};
+}
+
+module.exports = {
+  writeFile
+}

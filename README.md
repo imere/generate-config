@@ -85,10 +85,10 @@ in webpack.config.js
 const { CMD, CLI, generateConfig } = require('generate-config');
 
 const config = generateConfig(
-    [
-        ...Object.keys(CMD), // this will enable all builtin configs
-        CLI['enable-preview'], // this will generate a preview file
-    ],
+    {
+        ...CMD, // this will enable all builtin configs
+        'enable-preview': CLI['enable-preview'], // this will generate a preview file
+    },
     process.env.NODE_ENV
 );
 

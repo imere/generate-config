@@ -1,4 +1,4 @@
-const config = require('../lib/util/config');
+const { config } = require('../lib/util/config');
 
 const Config = require('webpack-chain');
 

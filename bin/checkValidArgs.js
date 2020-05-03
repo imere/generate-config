@@ -9,6 +9,10 @@ exports.checkValidArgs = function checkValidArgs(args) {
   const cmdList = [...Object.keys(CMD)];
 
   class CommandNotFoundError extends Error {
+
+    /**
+     * @param {*} cmd
+     */
     constructor(cmd) {
       super();
       this.cmd = cmd;
